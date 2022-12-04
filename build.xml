@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<project name="Algorithms-1">
+    <description>Build file for Algorithms course assignments</description>
+
+    <property name="src">src</property>
+    <property name="build">build</property>
+    <property name="dist">dist</property>
+    <property name="lib">lib</property>
+
+    <target name="clean">
+        <delete dir="${dist}" />
+        <delete dir="${build}" />
+    </target>
+
+    <target name="init">
+        <tstamp>
+            <format property="BUILD_TIME" pattern="yyyyMMdd-hhmmss"></format>
+        </tstamp>
+        <mkdir dir="${build}" />
+        <mkdir dir="${dist}" />
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${build}" classpath="${lib}/algs4.jar" source="11"/>
+    </target>
+
+    <target name="dist" depends="compile" description="desc">
+        <!-- <jar jarfile="${dist}/Algos-${BUILD_TIME}.jar" basedir="${build}" /> -->
+        <zip basedir="${build}" destfile="${dist}/Algos-${BUILD_TIME}.zip" />
+    </target>
+</project>
